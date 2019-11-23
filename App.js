@@ -6,6 +6,7 @@ import CustomerListScreen from './src/screens/customer/CustomerListScreen'
 import CollectionListScreen from './src/screens/collection/CollectionListScreen'
 import ArtistListScreen from './src/screens/artist/ArtistListScreen'
 import ArtListScreen from './src/screens/art/ArtListScreen'
+import { Provider as AuthProvider} from './src/context/AuthContext'
 
 const switchNavigator = createSwitchNavigator({
   SignIn: SignInScreen,
@@ -17,4 +18,12 @@ const switchNavigator = createSwitchNavigator({
   })
 });
 
-export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
+
+export default () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  )
+}

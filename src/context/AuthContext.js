@@ -21,11 +21,9 @@ const tryLocalSignin = dispatch => {
     const token = await AsyncStorage.getItem("token");
 
     if (token) {
-      console.log(`Token found! ${token}`);
       dispatch({ type: "sign_in", payload: token });
       navigate("CustomerList");
     } else {
-      console.log("No token found!");
       navigate("SignIn");
     }
   };

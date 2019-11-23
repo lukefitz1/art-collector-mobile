@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const ArtListScreen = () => {
   return (
     <View>
       <Text>ArtListScreen</Text>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({});

@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Text, Input, Button, Image } from "react-native-elements";
+import { View, StyleSheet, Button } from "react-native";
+import { Text, Input, Image } from "react-native-elements";
 import Spacer from "../components/Spacer";
 
 const SignInScreen = ({ navigation }) => {

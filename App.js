@@ -15,6 +15,9 @@ import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as CustomerProvider } from "./src/context/CustomerContext";
+import { Provider as CollectionProvider } from "./src/context/CollectionContext";
+import { Provider as ArtProvider } from "./src/context/ArtContext";
+import { Provider as ArtistProvider } from "./src/context/ArtistContext";
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -29,12 +32,12 @@ const switchNavigator = createSwitchNavigator({
       CollectionDetail: CollectionDetailScreen
     }),
     artFlow: createStackNavigator({
-      ArtListScreen,
-      ArtDetailScreen
+      ArtList: ArtListScreen,
+      ArtDetail: ArtDetailScreen
     }),
     artistFlow: createStackNavigator({
-      ArtistListScreen,
-      ArtistDetailScreen
+      ArtistList: ArtistListScreen,
+      ArtistDetail: ArtistDetailScreen
     })
   })
 });
@@ -44,13 +47,19 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return (
     <CustomerProvider>
-      <AuthProvider>
-        <App
-          ref={navigator => {
-            setNavigator(navigator);
-          }}
-        />
-      </AuthProvider>
+      <CollectionProvider>
+        <ArtProvider>
+          <ArtistProvider>
+            <AuthProvider>
+              <App
+                ref={navigator => {
+                  setNavigator(navigator);
+                }}
+              />
+            </AuthProvider>
+          </ArtistProvider>
+        </ArtProvider>
+      </CollectionProvider>
     </CustomerProvider>
   );
 };

@@ -6,7 +6,7 @@ import { Context as CustomerContext } from "../../context/CustomerContext";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers } = useContext(CustomerContext);
-  console.log(state);
+
   return (
     <>
       <NavigationEvents onWillFocus={() => getCustomers()} />

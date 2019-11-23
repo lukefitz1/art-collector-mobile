@@ -14,7 +14,6 @@ const getCustomers = dispatch => {
   return async () => {
     try {
       const response = await spireApi.get("/customer");
-      console.log(response.data);
       dispatch({ type: "get_customers", payload: response.data });
     } catch (err) {
       console.log(err);

@@ -8,6 +8,7 @@ const SignInScreen = ({ navigation }) => {
   const { state, signin } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   return (
     <View style={styles.container}>
       {/* <Image
@@ -37,6 +38,9 @@ const SignInScreen = ({ navigation }) => {
         autoCorrect={false}
         secureTextEntry
       />
+      {state.errorMessage ? (
+        <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+      ) : null}
       <Spacer>
         <Button
           style={styles.button}
@@ -66,6 +70,11 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "stretch"
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: "red",
+    marginTop: 10
   }
 });
 

@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
+import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers } = useContext(CustomerContext);
 
+  console.log(navigation);
   return (
     <>
       <NavigationEvents onWillFocus={() => getCustomers()} />
@@ -32,9 +34,14 @@ const CustomerListScreen = ({ navigation }) => {
   );
 };
 
-CustomerListScreen.navigationOptions = () => {
+CustomerListScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Customers"
+    title: "Customers",
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("CustomerCreate")}>
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    )
   };
 };
 

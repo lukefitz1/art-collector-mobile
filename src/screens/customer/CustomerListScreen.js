@@ -10,7 +10,6 @@ const CustomerListScreen = ({ navigation }) => {
   return (
     <>
       <NavigationEvents onWillFocus={() => getCustomers()} />
-      <Text>CustomerListScreen</Text>
       <FlatList
         data={state}
         keyExtractor={item => item.id}
@@ -31,6 +30,12 @@ const CustomerListScreen = ({ navigation }) => {
       />
     </>
   );
+};
+
+CustomerListScreen.navigationOptions = () => {
+  return {
+    title: "Customers"
+  };
 };
 
 const styles = StyleSheet.create({});

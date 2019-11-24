@@ -10,7 +10,6 @@ const ArtListScreen = ({ navigation }) => {
   return (
     <>
       <NavigationEvents onWillFocus={() => getArt()} />
-      <Text>ArtListScreen</Text>
       <FlatList
         data={state}
         keyExtractor={item => item.id}
@@ -26,6 +25,12 @@ const ArtListScreen = ({ navigation }) => {
       />
     </>
   );
+};
+
+ArtListScreen.navigationOptions = () => {
+  return {
+    title: "Artwork"
+  };
 };
 
 const styles = StyleSheet.create({});

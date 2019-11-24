@@ -19,26 +19,50 @@ import { Provider as CollectionProvider } from "./src/context/CollectionContext"
 import { Provider as ArtProvider } from "./src/context/ArtContext";
 import { Provider as ArtistProvider } from "./src/context/ArtistContext";
 
+const customerFlow = createStackNavigator({
+  CustomerList: CustomerListScreen,
+  CustomerDetail: CustomerDetailScreen
+});
+
+customerFlow.navigationOptions = {
+  title: "Customers"
+};
+
+const collectionFlow = createStackNavigator({
+  CollectionList: CollectionListScreen,
+  CollectionDetail: CollectionDetailScreen
+});
+
+collectionFlow.navigationOptions = {
+  title: "Collections"
+};
+
+const artFlow = createStackNavigator({
+  ArtList: ArtListScreen,
+  ArtDetail: ArtDetailScreen
+});
+
+artFlow.navigationOptions = {
+  title: "Artwork"
+};
+
+const artistFlow = createStackNavigator({
+  ArtistList: ArtistListScreen,
+  ArtistDetail: ArtistDetailScreen
+});
+
+artistFlow.navigationOptions = {
+  title: "Artists"
+};
+
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   SignIn: SignInScreen,
   mainFlow: createBottomTabNavigator({
-    customerFlow: createStackNavigator({
-      CustomerList: CustomerListScreen,
-      CustomerDetail: CustomerDetailScreen
-    }),
-    collectionFlow: createStackNavigator({
-      CollectionList: CollectionListScreen,
-      CollectionDetail: CollectionDetailScreen
-    }),
-    artFlow: createStackNavigator({
-      ArtList: ArtListScreen,
-      ArtDetail: ArtDetailScreen
-    }),
-    artistFlow: createStackNavigator({
-      ArtistList: ArtistListScreen,
-      ArtistDetail: ArtistDetailScreen
-    })
+    customerFlow: customerFlow,
+    collectionFlow: collectionFlow,
+    artFlow: artFlow,
+    artistFlow: artistFlow
   })
 });
 

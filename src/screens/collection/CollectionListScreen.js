@@ -10,7 +10,6 @@ const CollectionListScreen = ({ navigation }) => {
   return (
     <>
       <NavigationEvents onWillFocus={() => getCollections()} />
-      <Text>CollectionListScreen</Text>
       <FlatList
         data={state}
         keyExtractor={item => item.id}
@@ -28,6 +27,12 @@ const CollectionListScreen = ({ navigation }) => {
       />
     </>
   );
+};
+
+CollectionListScreen.navigationOptions = () => {
+  return {
+    title: "Collections"
+  };
 };
 
 const styles = StyleSheet.create({});

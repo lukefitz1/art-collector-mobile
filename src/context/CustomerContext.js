@@ -69,7 +69,7 @@ const addCustomer = () => {
   };
 };
 
-// const editCustomer = dispatch => () => {};
+const editCustomer = dispatch => () => {};
 
 const deleteCustomer = dispatch => {
   return async (id, callback) => {
@@ -92,7 +92,8 @@ export const { Provider, Context } = createDataContext(
   {
     getCustomers,
     addCustomer,
-    /*, editCustomer, */ deleteCustomer
+    editCustomer,
+    deleteCustomer
   },
   []
 );

@@ -3,6 +3,7 @@ import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as CollectionContext } from "../../context/CollectionContext";
+import { Feather } from "@expo/vector-icons";
 
 const CollectionListScreen = ({ navigation }) => {
   const { state, getCollections } = useContext(CollectionContext);
@@ -29,9 +30,14 @@ const CollectionListScreen = ({ navigation }) => {
   );
 };
 
-CollectionListScreen.navigationOptions = () => {
+CollectionListScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Collections"
+    title: "Collections",
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("CollectionCreate")}>
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    )
   };
 };
 

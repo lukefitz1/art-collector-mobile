@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Context as CustomerContext } from "../../context/CustomerContext";
 
-const CreateCustomerScreen = ({ navigation }) => {
+const CustomerCreateScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CreateCustomerScreen;
+export default CustomerCreateScreen;

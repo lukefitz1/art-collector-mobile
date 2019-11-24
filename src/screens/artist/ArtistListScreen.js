@@ -3,6 +3,7 @@ import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as ArtistContext } from "../../context/ArtistContext";
+import { Feather } from "@expo/vector-icons";
 
 const ArtistListScreen = ({ navigation }) => {
   const { state, getArtists } = useContext(ArtistContext);
@@ -32,9 +33,14 @@ const ArtistListScreen = ({ navigation }) => {
   );
 };
 
-ArtistListScreen.navigationOptions = () => {
+ArtistListScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Artists"
+    title: "Artists",
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("ArtistCreate")}>
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    )
   };
 };
 

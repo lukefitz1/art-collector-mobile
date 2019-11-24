@@ -3,6 +3,7 @@ import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as ArtContext } from "../../context/ArtContext";
+import { Feather } from "@expo/vector-icons";
 
 const ArtListScreen = ({ navigation }) => {
   const { state, getArt } = useContext(ArtContext);
@@ -27,9 +28,14 @@ const ArtListScreen = ({ navigation }) => {
   );
 };
 
-ArtListScreen.navigationOptions = () => {
+ArtListScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Artwork"
+    title: "Artwork",
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("ArtCreate")}>
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    )
   };
 };
 

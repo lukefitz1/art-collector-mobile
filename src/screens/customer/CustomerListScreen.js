@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
@@ -8,7 +8,6 @@ import { Feather } from "@expo/vector-icons";
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers } = useContext(CustomerContext);
 
-  console.log(navigation);
   return (
     <>
       <NavigationEvents onWillFocus={() => getCustomers()} />

@@ -6,6 +6,7 @@ import SignInScreen from "./src/screens/SignInScreen";
 import CustomerListScreen from "./src/screens/customer/CustomerListScreen";
 import CustomerDetailScreen from "./src/screens/customer/CustomerDetailScreen";
 import CustomerCreateScreen from "./src/screens/customer/CustomerCreateScreen";
+import CustomerEditScreen from "./src/screens/customer/CustomerEditScreen";
 import CollectionListScreen from "./src/screens/collection/CollectionListScreen";
 import CollectionDetailScreen from "./src/screens/collection/CollectionDetailScreen";
 import CollectionCreateScreen from "./src/screens/collection/CollectionCreateScreen";
@@ -26,7 +27,8 @@ import { Provider as ArtistProvider } from "./src/context/ArtistContext";
 const customerFlow = createStackNavigator({
   CustomerList: CustomerListScreen,
   CustomerDetail: CustomerDetailScreen,
-  CustomerCreate: CustomerCreateScreen
+  CustomerCreate: CustomerCreateScreen,
+  CustomerEdit: CustomerEditScreen
 });
 
 customerFlow.navigationOptions = {

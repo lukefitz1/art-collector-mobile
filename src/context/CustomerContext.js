@@ -7,6 +7,10 @@ const customerReducer = (state, action) => {
       return action.payload;
     case "delete_customer":
       return state.filter(customer => customer.id !== action.payload);
+    case "edit_customer":
+      return state.map(customer => {
+        return customer.id === action.payload.id ? action.payload : customer;
+      });
     default:
       return state;
   }
@@ -69,7 +73,60 @@ const addCustomer = () => {
   };
 };
 
-const editCustomer = dispatch => () => {};
+const editCustomer = dispatch => {
+  return async (
+    id,
+    firstName,
+    lastName,
+    email,
+    phone,
+    street,
+    city,
+    customerState,
+    zip,
+    referredBy,
+    projectNotes,
+    callback
+  ) => {
+    try {
+      await spireApi.put(`/customer/${id}`, {
+        firstName,
+        lastName,
+        email_address: email,
+        phone_number: phone,
+        street_address: street,
+        city,
+        state: customerState,
+        zip,
+        referred_by: referredBy,
+        project_notes: projectNotes
+      });
+
+      dispatch({
+        type: "edit_customer",
+        payload: {
+          id: id,
+          firstName,
+          lastName,
+          email_address: email,
+          phone_number: phone,
+          street_address: street,
+          city,
+          state: customerState,
+          zip,
+          referred_by: referredBy,
+          project_notes: projectNotes
+        }
+      });
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 const deleteCustomer = dispatch => {
   return async (id, callback) => {

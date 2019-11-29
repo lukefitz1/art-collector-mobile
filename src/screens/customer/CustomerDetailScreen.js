@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Context as CustomerContext } from "../../context/CustomerContext";
-import { Feather } from "@expo/vector-icons";
+import { Feather, EvilIcons } from "@expo/vector-icons";
 
 const CustomerDetailScreen = ({ navigation }) => {
   const { state, deleteCustomer } = useContext(CustomerContext);
@@ -25,6 +25,20 @@ const CustomerDetailScreen = ({ navigation }) => {
       <Text>{customer.phone_number}</Text>
     </View>
   );
+};
+
+CustomerDetailScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("CustomerEdit", { id: navigation.getParam("id") })
+        }
+      >
+        <EvilIcons name="pencil" size={35} />
+      </TouchableOpacity>
+    )
+  };
 };
 
 const styles = StyleSheet.create({});

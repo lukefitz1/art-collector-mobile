@@ -10,12 +10,18 @@ import CustomerEditScreen from "./src/screens/customer/CustomerEditScreen";
 import CollectionListScreen from "./src/screens/collection/CollectionListScreen";
 import CollectionDetailScreen from "./src/screens/collection/CollectionDetailScreen";
 import CollectionCreateScreen from "./src/screens/collection/CollectionCreateScreen";
+import CollectionEditScreen from "./src/screens/collection/CollectionEditScreen";
+
 import ArtistListScreen from "./src/screens/artist/ArtistListScreen";
 import ArtistDetailScreen from "./src/screens/artist/ArtistDetailScreen";
 import ArtistCreateScreen from "./src/screens/artist/ArtistCreateScreen";
+import ArtistEditScreen from "./src/screens/artist/ArtistEditScreen";
+
 import ArtListScreen from "./src/screens/art/ArtListScreen";
 import ArtDetailScreen from "./src/screens/art/ArtDetailScreen";
 import ArtCreateScreen from "./src/screens/art/ArtCreateScreen";
+import ArtEditScreen from "./src/screens/art/ArtEditScreen";
+
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
@@ -38,7 +44,8 @@ customerFlow.navigationOptions = {
 const collectionFlow = createStackNavigator({
   CollectionList: CollectionListScreen,
   CollectionDetail: CollectionDetailScreen,
-  CollectionCreate: CollectionCreateScreen
+  CollectionCreate: CollectionCreateScreen,
+  CollectionEdit: CollectionEditScreen
 });
 
 collectionFlow.navigationOptions = {
@@ -48,7 +55,8 @@ collectionFlow.navigationOptions = {
 const artFlow = createStackNavigator({
   ArtList: ArtListScreen,
   ArtDetail: ArtDetailScreen,
-  ArtCreate: ArtCreateScreen
+  ArtCreate: ArtCreateScreen,
+  ArtEdit: ArtEditScreen
 });
 
 artFlow.navigationOptions = {
@@ -58,7 +66,8 @@ artFlow.navigationOptions = {
 const artistFlow = createStackNavigator({
   ArtistList: ArtistListScreen,
   ArtistDetail: ArtistDetailScreen,
-  ArtistCreate: ArtistCreateScreen
+  ArtistCreate: ArtistCreateScreen,
+  ArtistEdit: ArtistEditScreen
 });
 
 artistFlow.navigationOptions = {

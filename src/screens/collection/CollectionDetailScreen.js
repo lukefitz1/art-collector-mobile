@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Context as CollectionContext } from "../../context/CollectionContext";
+import { Feather, EvilIcons } from "@expo/vector-icons";
 
 const CollectionDetailScreen = ({ navigation }) => {
   const { state } = useContext(CollectionContext);
@@ -15,6 +16,22 @@ const CollectionDetailScreen = ({ navigation }) => {
       <Text>{collection.year}</Text>
     </View>
   );
+};
+
+CollectionDetailScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("CollectionEdit", {
+            id: navigation.getParam("id")
+          })
+        }
+      >
+        <EvilIcons name="pencil" size={35} />
+      </TouchableOpacity>
+    )
+  };
 };
 
 const styles = StyleSheet.create({});

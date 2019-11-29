@@ -8,7 +8,15 @@ import {
   Button
 } from "react-native";
 
-const ArtEditScreen = () => {};
+const ArtEditScreen = () => {
+  return (
+    <View>
+      <ScrollView>
+        <Text>Artwork Edit Screen</Text>
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({});
 

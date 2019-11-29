@@ -8,7 +8,15 @@ import {
   Button
 } from "react-native";
 
-const CollectionEditScreen = () => {};
+const CollectionEditScreen = () => {
+  return (
+    <View>
+      <ScrollView>
+        <Text>Collection Edit Screen</Text>
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({});
 

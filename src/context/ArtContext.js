@@ -5,6 +5,10 @@ const artReducer = (state, action) => {
   switch (action.type) {
     case "get_art":
       return action.payload;
+    case "edit_art":
+      return state.map(art => {
+        return art.id === action.payload.id ? action.payload : art;
+      });
     default:
       return state;
   }
@@ -113,11 +117,136 @@ const addArtwork = () => {
   };
 };
 
+const editArtwork = dispatch => {
+  return async (
+    id,
+    objectId,
+    artType,
+    title,
+    date,
+    medium,
+    image,
+    description,
+    dimensions,
+    frameDimensions,
+    condition,
+    currentLocation,
+    source,
+    dateAcquired,
+    amountPaid,
+    currentValue,
+    notes,
+    notesImage,
+    additionalInfoLabel,
+    additionalInfoText,
+    additionalInfoImage,
+    additionalPdf,
+    reviewedBy,
+    reviewedDate,
+    provenance,
+    artist,
+    collection,
+    customer,
+    dateAcquiredLabel,
+    notesImageTwo,
+    additionalInfoImageTwo,
+    generalInformation,
+    showGeneralInfo,
+    customTitle,
+    callback
+  ) => {
+    try {
+      await spireApi.put(`/artwork/${id}`, {
+        ojbId: objectId,
+        artType,
+        title,
+        date,
+        medium,
+        image,
+        description,
+        dimensions,
+        frame_dimensions: frameDimensions,
+        condition,
+        currentLocation,
+        source,
+        dateAcquired,
+        amountPaid,
+        currentValue,
+        notes,
+        notesImage,
+        additionalInfoLabel,
+        additionalInfoText,
+        additionalInfoImage,
+        additionalPdf,
+        reviewedBy,
+        reviewedDate,
+        provenance,
+        artist_id: artist,
+        collection_id: collection,
+        customer_id: customer,
+        dateAcquiredLabel,
+        notesImageTwo,
+        additionalInfoImageTwo,
+        general_information_id: generalInformation,
+        show_general_info: showGeneralInfo,
+        custom_title: customTitle
+      });
+
+      dispatch({
+        type: "edit_art",
+        payload: {
+          id: id,
+          ojbId: objectId,
+          artType,
+          title,
+          date,
+          medium,
+          image,
+          description,
+          dimensions,
+          frame_dimensions: frameDimensions,
+          condition,
+          currentLocation,
+          source,
+          dateAcquired,
+          amountPaid,
+          currentValue,
+          notes,
+          notesImage,
+          additionalInfoLabel,
+          additionalInfoText,
+          additionalInfoImage,
+          additionalPdf,
+          reviewedBy,
+          reviewedDate,
+          provenance,
+          artist_id: artist,
+          collection_id: collection,
+          customer_id: customer,
+          dateAcquiredLabel,
+          notesImageTwo,
+          additionalInfoImageTwo,
+          general_information_id: generalInformation,
+          show_general_info: showGeneralInfo,
+          custom_title: customTitle
+        }
+      });
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   artReducer,
   {
     getArt,
-    addArtwork
+    addArtwork,
+    editArtwork
   },
   []
 );

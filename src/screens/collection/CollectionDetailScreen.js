@@ -11,9 +11,18 @@ const CollectionDetailScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text>{collection.collectionName}</Text>
-      <Text>{collection.identifier}</Text>
-      <Text>{collection.year}</Text>
+      <View style={styles.row}>
+        <Text style={styles.label}>Collection Name: </Text>
+        <Text>{collection.collectionName}</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.label}>Collection Identifier: </Text>
+        <Text>{collection.identifier}</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.label}>Collection Year: </Text>
+        <Text>{collection.year}</Text>
+      </View>
     </View>
   );
 };
@@ -34,6 +43,13 @@ CollectionDetailScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    margin: 5
+  },
+  label: { fontWeight: "bold" }
+});
 
 export default CollectionDetailScreen;

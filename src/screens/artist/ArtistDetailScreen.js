@@ -10,16 +10,24 @@ const ArtistDetailScreen = ({ navigation }) => {
   const artist = state.find(artist => artist.id === id);
 
   return (
-    <View>
-      {artist.artist_image.url ? (
-        <Image
-          style={{ width: 50, height: 50 }}
-          source={{ uri: artist.artist_image.url }}
-        />
-      ) : null}
-      <Text>{`${artist.firstName} ${artist.lastName}`}</Text>
-      <Text>{artist.additionalInfo}</Text>
-      <Text>{artist.biography}</Text>
+    <View style={styles.container}>
+      <View style={styles.imageColumn}>
+        {artist.artist_image.url ? (
+          <Image
+            style={styles.image}
+            source={{ uri: artist.artist_image.url }}
+          />
+        ) : null}
+      </View>
+      <View style={styles.contentColumn}>
+        <Text
+          style={styles.text}
+        >{`${artist.firstName} ${artist.lastName}`}</Text>
+        <Text style={styles.text}>{artist.additionalInfo}</Text>
+      </View>
+      <View>
+        <Text style={styles.bio}>{artist.biography}</Text>
+      </View>
     </View>
   );
 };
@@ -38,6 +46,17 @@ ArtistDetailScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flexDirection: "row", flexWrap: "wrap", margin: 10 },
+  imageColumn: {
+    width: "40%"
+  },
+  image: { width: 100, height: 100, alignSelf: "center" },
+  contentColumn: { width: "60%" },
+  text: { fontWeight: "bold", marginBottom: 5 },
+  bio: {
+    marginTop: 10
+  }
+});
 
 export default ArtistDetailScreen;

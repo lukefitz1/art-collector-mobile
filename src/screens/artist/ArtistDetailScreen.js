@@ -17,7 +17,12 @@ const ArtistDetailScreen = ({ navigation }) => {
             style={styles.image}
             source={{ uri: artist.artist_image.url }}
           />
-        ) : null}
+        ) : (
+          <Image
+            style={styles.image}
+            source={require("../../../assets/spire-logo-square.jpg")}
+          />
+        )}
       </View>
       <View style={styles.contentColumn}>
         <Text

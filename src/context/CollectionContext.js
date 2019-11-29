@@ -5,6 +5,12 @@ const collectionReducer = (state, action) => {
   switch (action.type) {
     case "get_collections":
       return action.payload;
+    case "edit_collection":
+      return state.map(collection => {
+        return collection.id === action.payload.id
+          ? action.payload
+          : collection;
+      });
     default:
       return state;
   }
@@ -48,11 +54,40 @@ const addCollection = () => {
   };
 };
 
+const editCollection = dispatch => {
+  return async (id, collectionName, identifier, year, callback) => {
+    try {
+      await spireApi.put(`/collections/${id}`, {
+        collectionName,
+        identifier,
+        year
+      });
+
+      dispatch({
+        type: "edit_collection",
+        payload: {
+          id: id,
+          collectionName,
+          identifier,
+          year
+        }
+      });
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   collectionReducer,
   {
     getCollections,
-    addCollection
+    addCollection,
+    editCollection
   },
   []
 );

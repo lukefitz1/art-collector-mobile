@@ -98,6 +98,8 @@ const ArtForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Description:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={description}
           onChangeText={text => setDescription(text)}
@@ -152,6 +154,8 @@ const ArtForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Notes:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={notes}
           onChangeText={text => setNotes(text)}
@@ -170,6 +174,8 @@ const ArtForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Additional Info Text:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={additionalInfoText}
           onChangeText={text => setAdditionalInfoText(text)}
@@ -200,6 +206,8 @@ const ArtForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Provenance:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={provenance}
           onChangeText={text => setProvenance(text)}

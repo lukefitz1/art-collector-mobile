@@ -39,7 +39,7 @@ const ArtistListScreen = ({ navigation }) => {
             >
               <View style={styles.row}>
                 <Text style={styles.fontSize}>
-                  {item.firstName} - {item.lastName}
+                  {item.firstName} {item.lastName}
                 </Text>
                 <TouchableOpacity onPress={() => showAlert(item.id)}>
                   <Feather name="trash" style={styles.icon} />

@@ -79,6 +79,8 @@ const CustomerForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Project Notes:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={projectNotes}
           onChangeText={text => setProjectNotes(text)}

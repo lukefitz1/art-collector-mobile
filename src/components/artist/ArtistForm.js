@@ -34,6 +34,8 @@ const ArtistForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Biography:</Text>
         <TextInput
+          multiline={true}
+          numberOfLines={4}
           style={styles.input}
           value={biography}
           onChangeText={text => setBiography(text)}

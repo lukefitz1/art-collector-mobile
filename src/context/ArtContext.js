@@ -9,6 +9,8 @@ const artReducer = (state, action) => {
       return state.map(art => {
         return art.id === action.payload.id ? action.payload : art;
       });
+    case "delete_artwork":
+      return state.filter(art => art.id !== action.payload);
     default:
       return state;
   }
@@ -241,12 +243,29 @@ const editArtwork = dispatch => {
   };
 };
 
+const deleteArt = dispatch => {
+  return async (id, callback) => {
+    try {
+      await spireApi.delete(`/artwork/${id}`);
+
+      dispatch({ type: "delete_artwork", payload: id });
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   artReducer,
   {
     getArt,
     addArtwork,
-    editArtwork
+    editArtwork,
+    deleteArt
   },
   []
 );

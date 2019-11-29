@@ -11,6 +11,8 @@ const collectionReducer = (state, action) => {
           ? action.payload
           : collection;
       });
+    case "delete_collection":
+      return state.filter(collection => collection.id !== action.payload);
     default:
       return state;
   }
@@ -82,12 +84,29 @@ const editCollection = dispatch => {
   };
 };
 
+const deleteCollection = dispatch => {
+  return async (id, callback) => {
+    try {
+      await spireApi.delete(`/collections/${id}`);
+
+      dispatch({ type: "delete_collection", payload: id });
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   collectionReducer,
   {
     getCollections,
     addCollection,
-    editCollection
+    editCollection,
+    deleteCollection
   },
   []
 );

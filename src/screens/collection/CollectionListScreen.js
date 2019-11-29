@@ -1,12 +1,30 @@
 import React, { useContext } from "react";
-import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
-import { ListItem } from "react-native-elements";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Alert
+} from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { Context as CollectionContext } from "../../context/CollectionContext";
 import { Feather } from "@expo/vector-icons";
 
 const CollectionListScreen = ({ navigation }) => {
-  const { state, getCollections } = useContext(CollectionContext);
+  const { state, getCollections, deleteCollection } = useContext(
+    CollectionContext
+  );
+
+  const showAlert = id => {
+    Alert.alert("Warning", "Are you sure you want to delete this collection?", [
+      { text: "Delete", onPress: () => deleteCollection(id) },
+      {
+        text: "Cancel",
+        style: "cancel"
+      }
+    ]);
+  };
 
   return (
     <>
@@ -21,7 +39,12 @@ const CollectionListScreen = ({ navigation }) => {
                 navigation.navigate("CollectionDetail", { id: item.id })
               }
             >
-              <ListItem chevron={true} title={item.collectionName} />
+              <View style={styles.row}>
+                <Text style={styles.fontSize}>{item.collectionName}</Text>
+                <TouchableOpacity onPress={() => showAlert(item.id)}>
+                  <Feather name="trash" style={styles.icon} />
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
           );
         }}
@@ -41,6 +64,21 @@ CollectionListScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderTopWidth: 1,
+    borderColor: "gray"
+  },
+  title: {
+    fontSize: 18
+  },
+  icon: {
+    fontSize: 24
+  }
+});
 
 export default CollectionListScreen;

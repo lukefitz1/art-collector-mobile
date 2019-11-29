@@ -4,15 +4,25 @@ import {
   View,
   StyleSheet,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
-import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
 import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
+
+  const showAlert = id => {
+    Alert.alert("Warning", "Are you sure you want to delete this customer?", [
+      { text: "Delete", onPress: () => deleteCustomer(id) },
+      {
+        text: "Cancel",
+        style: "cancel"
+      }
+    ]);
+  };
 
   return (
     <>
@@ -31,7 +41,7 @@ const CustomerListScreen = ({ navigation }) => {
                 <Text style={styles.fontSize}>
                   {item.firstName} - {item.lastName}
                 </Text>
-                <TouchableOpacity onPress={() => deleteCustomer(item.id)}>
+                <TouchableOpacity onPress={() => showAlert(item.id)}>
                   <Feather name="trash" style={styles.icon} />
                 </TouchableOpacity>
               </View>

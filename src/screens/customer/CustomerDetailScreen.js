@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Context as CustomerContext } from "../../context/CustomerContext";
-import { Feather, EvilIcons } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
 
 const CustomerDetailScreen = ({ navigation }) => {
   const { state, deleteCustomer } = useContext(CustomerContext);
@@ -11,15 +11,6 @@ const CustomerDetailScreen = ({ navigation }) => {
 
   return (
     <View>
-      {/* <TouchableOpacity
-        onPress={() => {
-          deleteCustomer(id, () => {
-            navigation.navigate("CustomerList");
-          });
-        }}
-      >
-        <Feather name="trash" style={styles.icon} size={25} />
-      </TouchableOpacity> */}
       <Text>{`${customer.firstName} ${customer.lastName}`}</Text>
       <Text>{customer.email_address}</Text>
       <Text>{customer.phone_number}</Text>

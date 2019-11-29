@@ -1,12 +1,18 @@
 import React, { useContext } from "react";
-import { StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
 import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
-  const { state, getCustomers } = useContext(CustomerContext);
+  const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
 
   return (
     <>
@@ -21,10 +27,14 @@ const CustomerListScreen = ({ navigation }) => {
                 navigation.navigate("CustomerDetail", { id: item.id })
               }
             >
-              <ListItem
-                chevron={true}
-                title={`${item.firstName} ${item.lastName}`}
-              />
+              <View style={styles.row}>
+                <Text style={styles.fontSize}>
+                  {item.firstName} - {item.lastName}
+                </Text>
+                <TouchableOpacity onPress={() => deleteCustomer(item.id)}>
+                  <Feather name="trash" style={styles.icon} />
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
           );
         }}
@@ -44,6 +54,21 @@ CustomerListScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    borderTopWidth: 1,
+    borderColor: "gray"
+  },
+  title: {
+    fontSize: 18
+  },
+  icon: {
+    fontSize: 24
+  }
+});
 
 export default CustomerListScreen;

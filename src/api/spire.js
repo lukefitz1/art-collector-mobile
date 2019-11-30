@@ -1,9 +1,9 @@
 import axios from "axios";
 import { AsyncStorage } from "react-native";
+import Config from "../../config/config";
 
 const instance = axios.create({
-  // baseURL: "https://spire-art-services.herokuapp.com/api"
-  baseURL: "http://localhost:3000/api"
+  baseURL: Config.BASE_URL
 });
 
 instance.interceptors.request.use(

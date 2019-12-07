@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button
 } from "react-native";
+import ImageSelector from "../ImageSelector";
 
 const ArtForm = ({ onSubmit, initialValues }) => {
   const [objectId, setObjectId] = useState(initialValues.objectId);
@@ -14,7 +15,9 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [date, setDate] = useState(initialValues.date);
   const [medium, setMedium] = useState(initialValues.medium);
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
+  const [imageBase64, setImageBase64] = useState("");
+
   const [description, setDescription] = useState(initialValues.description);
   const [dimensions, setDimensions] = useState(initialValues.dimensions);
   const [frameDimensions, setFrameDimensions] = useState(
@@ -57,6 +60,10 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   );
   const [customTitle, setCustomTitle] = useState(initialValues.custom_title);
 
+  const imageTakenHandler = imageBase64 => {
+    setImageBase64(imageBase64);
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -91,11 +98,12 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setMedium(text)}
         />
         <Text style={styles.label}>Image:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={image}
           onChangeText={text => setImage(text)}
-        />
+        /> */}
+        <ImageSelector onImageTaken={imageTakenHandler} />
         <Text style={styles.label}>Description:</Text>
         <TextInput
           multiline={true}
@@ -275,7 +283,7 @@ const ArtForm = ({ onSubmit, initialValues }) => {
               title,
               date,
               medium,
-              image,
+              imageBase64,
               description,
               dimensions,
               frameDimensions,

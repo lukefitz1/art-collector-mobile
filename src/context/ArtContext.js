@@ -35,7 +35,7 @@ const addArtwork = () => {
     title,
     date,
     medium,
-    image,
+    imageBase64,
     description,
     dimensions,
     frameDimensions,
@@ -66,6 +66,13 @@ const addArtwork = () => {
     callback
   ) => {
     try {
+      let image;
+      if (imageBase64 && imageBase64 != "") {
+        image = `data:image/jpeg;base64,${imageBase64}`;
+      } else {
+        image = "";
+      }
+
       await spireApi.post("/artwork", {
         ojbId: objectId,
         artType,

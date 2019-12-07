@@ -34,16 +34,22 @@ const addArtist = () => {
     lastName,
     biography,
     additionalInfo,
-    artistImage,
+    imageBase64,
     callback
   ) => {
     try {
+      let image;
+      if (imageBase64 && imageBase64 != "") {
+        image = `data:image/jpeg;base64,${imageBase64}`;
+      } else {
+        image = "";
+      }
       await spireApi.post("/artist", {
         firstName,
         lastName,
         biography,
         additionalInfo,
-        artist_image: artistImage
+        artist_image: image
       });
 
       // TODO: Instead of following dispatch, we may need to re-fetch all customers

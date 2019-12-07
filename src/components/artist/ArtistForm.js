@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button
 } from "react-native";
+import ImageSelector from "../ImageSelector";
 
 const ArtistForm = ({ onSubmit, initialValues }) => {
   const [firstName, setFirstName] = useState(initialValues.firstName);
@@ -16,7 +17,11 @@ const ArtistForm = ({ onSubmit, initialValues }) => {
     initialValues.additionalInfo
   );
   const [artistImage, setArtistImage] = useState(initialValues.artistImage);
+  const [imageBase64, setImageBase64] = useState("");
 
+  const imageTakenHandler = imageBase64 => {
+    setImageBase64(imageBase64);
+  };
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -47,12 +52,17 @@ const ArtistForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setAdditionalInfo(text)}
         />
         <Text style={styles.label}>Artist Image:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={artistImage}
           onChangeText={text => setArtistImage(text)}
+        /> */}
+        <ImageSelector
+          style={styles.imageBtn}
+          onImageTaken={imageTakenHandler}
         />
         <Button
+          style={styles.saveBtn}
           title="Save Artist"
           onPress={() =>
             onSubmit(
@@ -60,7 +70,7 @@ const ArtistForm = ({ onSubmit, initialValues }) => {
               lastName,
               biography,
               additionalInfo,
-              artistImage
+              imageBase64
             )
           }
         />
@@ -93,6 +103,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 5,
     marginLeft: 5
+  },
+  imageBtn: {
+    marginBottom: 15
+  },
+  saveBtn: {
+    marginTop: 15
   }
 });
 

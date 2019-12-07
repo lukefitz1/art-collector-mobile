@@ -5,7 +5,6 @@ import * as Permissions from "expo-permissions";
 
 const ImageSelector = props => {
   const [image, setImage] = useState();
-  const [imageBase64, setImageBase64] = useState("");
 
   // function to get permission to use camera
   const verifyPermissions = async () => {
@@ -38,7 +37,6 @@ const ImageSelector = props => {
     });
 
     setImage(image.uri);
-    setImageBase64(image.base64);
     props.onImageTaken(image.base64);
   };
 

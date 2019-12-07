@@ -16,7 +16,6 @@ const ArtistForm = ({ onSubmit, initialValues }) => {
   const [additionalInfo, setAdditionalInfo] = useState(
     initialValues.additionalInfo
   );
-  const [artistImage, setArtistImage] = useState(initialValues.artistImage);
   const [imageBase64, setImageBase64] = useState("");
 
   const imageTakenHandler = imageBase64 => {

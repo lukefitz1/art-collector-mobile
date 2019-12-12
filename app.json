@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "art-collector-mobile",
-    "displayName": "art-collector-mobile",
     "slug": "art-collector-mobile",
     "privacy": "public",
     "sdkVersion": "35.0.0",
@@ -27,5 +26,7 @@
     "ios": {
       "supportsTablet": true
     }
-  }
+  },
+  "name": "art-collector-mobile",
+  "displayName": "art-collector-mobile"
 }

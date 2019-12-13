@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.lukefitzgerald"
+    },
+    "android": {
+      "package": "com.lukefitzgerald"
     }
   },
   "name": "art-collector-mobile",

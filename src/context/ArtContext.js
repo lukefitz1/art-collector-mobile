@@ -66,11 +66,45 @@ const addArtwork = () => {
     callback
   ) => {
     try {
-      let image;
+      let mainImage;
+      let nImageOne;
+      let nImageTwo;
+      let aImageOne;
+      let aImageTwo;
+
       if (imageBase64 && imageBase64 != "") {
-        image = `data:image/jpeg;base64,${imageBase64}`;
+        console.log("There is a Main image");
+        mainImage = `data:image/jpeg;base64,${imageBase64}`;
       } else {
-        image = "";
+        mainImage = "";
+      }
+
+      if (notesImage && notesImage != "") {
+        console.log("There is a Notes 1 image");
+        nImageOne = `data:image/jpeg;base64,${notesImage}`;
+      } else {
+        nImageOne = "";
+      }
+
+      if (notesImageTwo && notesImageTwo != "") {
+        console.log("There is a Notes 2 image");
+        nImageTwo = `data:image/jpeg;base64,${notesImageTwo}`;
+      } else {
+        nImageTwo = "";
+      }
+
+      if (additionalInfoImage && additionalInfoImage != "") {
+        console.log("There is a Additional Info 1 image");
+        aImageOne = `data:image/jpeg;base64,${additionalInfoImage}`;
+      } else {
+        aImageOne = "";
+      }
+
+      if (additionalInfoImageTwo && additionalInfoImageTwo != "") {
+        console.log("There is a Additional Info 2 image");
+        aImageTwo = `data:image/jpeg;base64,${additionalInfoImageTwo}`;
+      } else {
+        aImageTwo = "";
       }
 
       await spireApi.post("/artwork", {
@@ -79,7 +113,7 @@ const addArtwork = () => {
         title,
         date,
         medium,
-        image,
+        image: mainImage,
         description,
         dimensions,
         frame_dimensions: frameDimensions,
@@ -90,10 +124,10 @@ const addArtwork = () => {
         amountPaid,
         currentValue,
         notes,
-        notesImage,
+        notesImage: nImageOne,
         additionalInfoLabel,
         additionalInfoText,
-        additionalInfoImage,
+        additionalInfoImage: aImageOne,
         additionalPdf,
         reviewedBy,
         reviewedDate,
@@ -102,8 +136,8 @@ const addArtwork = () => {
         collection_id: collection,
         customer_id: customer,
         dateAcquiredLabel,
-        notesImageTwo,
-        additionalInfoImageTwo,
+        notesImageTwo: nImageTwo,
+        additionalInfoImageTwo: aImageTwo,
         general_information_id: generalInformation,
         show_general_info: showGeneralInfo,
         custom_title: customTitle

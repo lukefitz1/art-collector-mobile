@@ -15,7 +15,6 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   const [title, setTitle] = useState(initialValues.title);
   const [date, setDate] = useState(initialValues.date);
   const [medium, setMedium] = useState(initialValues.medium);
-  // const [image, setImage] = useState("");
   const [imageBase64, setImageBase64] = useState("");
 
   const [description, setDescription] = useState(initialValues.description);
@@ -32,14 +31,12 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   const [amountPaid, setAmountPaid] = useState(initialValues.amountPaid);
   const [currentValue, setCurrentValue] = useState(initialValues.currentValue);
   const [notes, setNotes] = useState(initialValues.notes);
-  const [notesImage, setNotesImage] = useState("");
   const [additionalInfoLabel, setAdditionalInfoLabel] = useState(
     initialValues.additionalInfoLabel
   );
   const [additionalInfoText, setAdditionalInfoText] = useState(
     initialValues.additionalInfoText
   );
-  const [additionalInfoImage, setAdditionalInfoImage] = useState("");
   const [additionalPdf, setAdditionalPdf] = useState("");
   const [reviewedBy, setReviewedBy] = useState(initialValues.reviewedBy);
   const [reviewedDate, setReviewedDate] = useState(initialValues.reviewedDate);
@@ -50,8 +47,6 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   const [dateAcquiredLabel, setDateAcquiredLabel] = useState(
     initialValues.dateAcquiredLabel
   );
-  const [notesImageTwo, setNotesImageTwo] = useState("");
-  const [additionalInfoImageTwo, setAdditionalInfoImageTwo] = useState("");
   const [generalInformation, setGeneralInformation] = useState(
     initialValues.general_information_id
   );
@@ -60,8 +55,29 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   );
   const [customTitle, setCustomTitle] = useState(initialValues.custom_title);
 
+  const [notesImage, setNotesImage] = useState("");
+  const [additionalInfoImage, setAdditionalInfoImage] = useState("");
+  const [notesImageTwo, setNotesImageTwo] = useState("");
+  const [additionalInfoImageTwo, setAdditionalInfoImageTwo] = useState("");
+
   const imageTakenHandler = imageBase64 => {
     setImageBase64(imageBase64);
+  };
+
+  const notesImageOneTakenHandler = imageBase64 => {
+    setNotesImage(imageBase64);
+  };
+
+  const notesImageTwoTakenHandler = imageBase64 => {
+    setNotesImageTwo(imageBase64);
+  };
+
+  const additionalInfoImageOneTakenHandler = imageBase64 => {
+    setAdditionalInfoImage(imageBase64);
+  };
+
+  const additionalInfoImageTwoTakenHandler = imageBase64 => {
+    setAdditionalInfoImageTwo(imageBase64);
   };
 
   return (
@@ -169,11 +185,12 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setNotes(text)}
         />
         <Text style={styles.label}>Notes Image:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={notesImage}
           onChangeText={text => setNotesImage(text)}
-        />
+        /> */}
+        <ImageSelector onImageTaken={notesImageOneTakenHandler} />
         <Text style={styles.label}>Additional Info Label:</Text>
         <TextInput
           style={styles.input}
@@ -189,11 +206,12 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setAdditionalInfoText(text)}
         />
         <Text style={styles.label}>Additional Info Image:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={additionalInfoImage}
           onChangeText={text => setAdditionalInfoImage(text)}
-        />
+        /> */}
+        <ImageSelector onImageTaken={additionalInfoImageOneTakenHandler} />
         <Text style={styles.label}>Additional PDF:</Text>
         <TextInput
           style={styles.input}
@@ -245,17 +263,19 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setDateAcquiredLabel(text)}
         />
         <Text style={styles.label}>Notes Image Two:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={notesImageTwo}
           onChangeText={text => setNotesImageTwo(text)}
-        />
+        /> */}
+        <ImageSelector onImageTaken={notesImageTwoTakenHandler} />
         <Text style={styles.label}>Additional Info Image Two:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={additionalInfoImageTwo}
           onChangeText={text => setAdditionalInfoImageTwo(text)}
-        />
+        /> */}
+        <ImageSelector onImageTaken={additionalInfoImageTwoTakenHandler} />
         <Text style={styles.label}>General Information:</Text>
         <TextInput
           style={styles.input}

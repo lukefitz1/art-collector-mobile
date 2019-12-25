@@ -127,12 +127,7 @@ const CustomerForm = ({ onSubmit, initialValues }) => {
           value={city}
           onChangeText={text => setCity(text)}
         />
-        <Text style={styles.label}>State:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={state}
-          onChangeText={text => setState(text)}
-        /> */}
+        <Text style={styles.label}>State:</Text>s
         <RNPickerSelect
           items={statesList}
           value={state}

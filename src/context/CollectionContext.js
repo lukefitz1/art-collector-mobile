@@ -33,7 +33,6 @@ const getCollections = dispatch => {
 const addCollection = () => {
   return async (collectionName, identifier, year, customerId, callback) => {
     try {
-      console.log(`Customer ID: ${customerId}`);
       await spireApi.post("/collections", {
         collectionName,
         identifier,

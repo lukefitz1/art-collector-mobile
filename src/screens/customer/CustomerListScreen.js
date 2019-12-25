@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
-  const { collectionState, getCollections } = useContext(CollectionContext);
+  const { getCollections } = useContext(CollectionContext);
 
   const showAlert = id => {
     Alert.alert("Warning", "Are you sure you want to delete this customer?", [

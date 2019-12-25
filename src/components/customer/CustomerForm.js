@@ -7,8 +7,71 @@ import {
   ScrollView,
   Button
 } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 
 const CustomerForm = ({ onSubmit, initialValues }) => {
+  const stateCodes = [
+    "AL",
+    "AK",
+    "AS",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "DC",
+    "FM",
+    "FL",
+    "GA",
+    "GU",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MH",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "MP",
+    "OH",
+    "OK",
+    "OR",
+    "PW",
+    "PA",
+    "PR",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VI",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY"
+  ];
+
   const [firstName, setFirstName] = useState(initialValues.firstName);
   const [lastName, setLastName] = useState(initialValues.lastName);
   const [email, setEmail] = useState(initialValues.email);
@@ -20,6 +83,11 @@ const CustomerForm = ({ onSubmit, initialValues }) => {
   const [referredBy, setReferredBy] = useState(initialValues.referredBy);
   const [projectNotes, setProjectNotes] = useState(initialValues.projectNotes);
 
+  const statesList = stateCodes.map(x => ({
+    label: x,
+    value: x,
+    key: x
+  }));
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -60,10 +128,15 @@ const CustomerForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setCity(text)}
         />
         <Text style={styles.label}>State:</Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           value={state}
           onChangeText={text => setState(text)}
+        /> */}
+        <RNPickerSelect
+          items={statesList}
+          value={state}
+          onValueChange={value => setState(value)}
         />
         <Text style={styles.label}>Zip Code:</Text>
         <TextInput

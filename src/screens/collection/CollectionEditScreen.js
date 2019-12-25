@@ -7,7 +7,7 @@ const CollectionEditScreen = ({ navigation }) => {
   const id = navigation.getParam("id");
   const { state, editCollection } = useContext(CollectionContext);
 
-  const collection = state.find(customer => customer.id === id);
+  const collection = state.find(collection => collection.id === id);
 
   return (
     <CollectionForm

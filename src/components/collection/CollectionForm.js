@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -7,13 +7,24 @@ import {
   ScrollView,
   Button
 } from "react-native";
+import { Context as CustomerContext } from "../../context/CustomerContext";
+import RNPickerSelect from "react-native-picker-select";
 
 const CollectionForm = ({ onSubmit, initialValues }) => {
+  const { state } = useContext(CustomerContext);
+
   const [collectionName, setCollectionName] = useState(
     initialValues.collectionName
   );
   const [identifier, setIdentifier] = useState(initialValues.identifier);
   const [year, setYear] = useState(initialValues.year);
+  const [customerId, setCustomerId] = useState(initialValues.customerId);
+
+  const customerList = state.map(x => ({
+    label: `${x.firstName} ${x.lastName}`,
+    value: x.id,
+    key: x.id
+  }));
 
   return (
     <View style={styles.container}>
@@ -36,9 +47,14 @@ const CollectionForm = ({ onSubmit, initialValues }) => {
           value={year}
           onChangeText={text => setYear(text)}
         />
+        <RNPickerSelect
+          items={customerList}
+          value={customerId}
+          onValueChange={value => setCustomerId(value)}
+        />
         <Button
           title="Save Collection"
-          onPress={() => onSubmit(collectionName, identifier, year)}
+          onPress={() => onSubmit(collectionName, identifier, year, customerId)}
         />
       </ScrollView>
     </View>
@@ -49,7 +65,8 @@ CollectionForm.defaultProps = {
   initialValues: {
     collectionName: "",
     identifier: "",
-    year: ""
+    year: "",
+    customerId: ""
   }
 };
 

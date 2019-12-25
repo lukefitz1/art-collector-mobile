@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
+import { Context as CollectionContext } from "../../context/CollectionContext";
 import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
+  const { collectionState, getCollections } = useContext(CollectionContext);
 
   const showAlert = id => {
     Alert.alert("Warning", "Are you sure you want to delete this customer?", [
@@ -24,9 +26,14 @@ const CustomerListScreen = ({ navigation }) => {
     ]);
   };
 
+  function makeRequests() {
+    getCustomers();
+    getCollections();
+  }
+
   return (
     <>
-      <NavigationEvents onWillFocus={() => getCustomers()} />
+      <NavigationEvents onWillFocus={() => makeRequests()} />
       <FlatList
         data={state}
         keyExtractor={item => item.id}

@@ -37,6 +37,7 @@ const ImageSelector = props => {
     });
 
     setImage(image.uri);
+    console.log(image.uri);
     props.onImageTaken(image.base64);
   };
 

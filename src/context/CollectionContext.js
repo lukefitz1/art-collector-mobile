@@ -31,12 +31,14 @@ const getCollections = dispatch => {
 };
 
 const addCollection = () => {
-  return async (collectionName, identifier, year, callback) => {
+  return async (collectionName, identifier, year, customerId, callback) => {
     try {
+      console.log(`Customer ID: ${customerId}`);
       await spireApi.post("/collections", {
         collectionName,
         identifier,
-        year
+        year,
+        customer_id: customerId
       });
 
       // TODO: Instead of following dispatch, we may need to re-fetch all customers

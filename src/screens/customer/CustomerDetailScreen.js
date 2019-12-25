@@ -1,7 +1,19 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+  FlatList
+} from "react-native";
 import { Context as CustomerContext } from "../../context/CustomerContext";
 import { EvilIcons } from "@expo/vector-icons";
+import {
+  Collapse,
+  CollapseHeader,
+  CollapseBody
+} from "accordion-collapse-react-native";
 
 const CustomerDetailScreen = ({ navigation }) => {
   const { state } = useContext(CustomerContext);
@@ -47,6 +59,55 @@ const CustomerDetailScreen = ({ navigation }) => {
         <Text style={styles.label}>Project Notes: </Text>
         <Text>{customer.projectNotes}</Text>
       </View>
+      <Button
+        title="Create Collection"
+        onPress={() => navigation.navigate("CollectionCreate")}
+      />
+      <FlatList
+        data={customer.collections}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <Collapse>
+                <CollapseHeader>
+                  <View>
+                    <Text>{item.collectionName}</Text>
+                  </View>
+                </CollapseHeader>
+                <CollapseBody>
+                  <Text>Collection ID: {item.id}</Text>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("CollectionEdit", {
+                        id: item.id
+                      })
+                    }
+                  >
+                    <Text>Edit Collection</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("ArtCreate", {
+                        id: item.id
+                      })
+                    }
+                  >
+                    <Text>Add Artwork</Text>
+                  </TouchableOpacity>
+                  <FlatList
+                    data={item.artworks}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => {
+                      return <Text>{item.ojbId}</Text>;
+                    }}
+                  />
+                </CollapseBody>
+              </Collapse>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };

@@ -14,15 +14,17 @@ import {
   CollapseHeader,
   CollapseBody
 } from "accordion-collapse-react-native";
+import { NavigationEvents } from "react-navigation";
 
 const CustomerDetailScreen = ({ navigation }) => {
-  const { state } = useContext(CustomerContext);
+  const { state, getCustomers } = useContext(CustomerContext);
   const id = navigation.getParam("id");
 
   const customer = state.find(cust => cust.id === id);
 
   return (
-    <View>
+    <>
+      <NavigationEvents onWillFocus={() => getCustomers()} />
       <View style={styles.row}>
         <Text style={styles.label}>Name: </Text>
         <Text>{`${customer.firstName} ${customer.lastName}`}</Text>
@@ -108,7 +110,7 @@ const CustomerDetailScreen = ({ navigation }) => {
           );
         }}
       />
-    </View>
+    </>
   );
 };
 

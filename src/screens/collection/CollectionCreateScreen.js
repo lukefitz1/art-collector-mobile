@@ -11,7 +11,7 @@ const CollectionCreateScreen = ({ navigation }) => {
       <CollectionForm
         onSubmit={(collectionName, identifier, year, customerId) => {
           addCollection(collectionName, identifier, year, customerId, () =>
-            navigation.navigate("CollectionList")
+            navigation.navigate("CustomerDetail", { id: customerId })
           );
         }}
       />

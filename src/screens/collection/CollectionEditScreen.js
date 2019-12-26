@@ -19,7 +19,7 @@ const CollectionEditScreen = ({ navigation }) => {
       }}
       onSubmit={(collectionName, identifier, year, customerId) => {
         editCollection(id, collectionName, identifier, year, customerId, () =>
-          navigation.navigate("CollectionList")
+          navigation.navigate("CustomerDetail", { id: customerId })
         );
       }}
     />

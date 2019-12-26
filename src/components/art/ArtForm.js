@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -8,6 +8,10 @@ import {
   Button
 } from "react-native";
 import ImageSelector from "../ImageSelector";
+import RNPickerSelect from "react-native-picker-select";
+import { Context as CustomerContext } from "../../context/CustomerContext";
+import { Context as CollectionContext } from "../../context/CollectionContext";
+import { Context as ArtistContext } from "../../context/ArtistContext";
 
 const ArtForm = ({ onSubmit, initialValues }) => {
   const [objectId, setObjectId] = useState(initialValues.objectId);
@@ -79,6 +83,27 @@ const ArtForm = ({ onSubmit, initialValues }) => {
   const additionalInfoImageTwoTakenHandler = imageBase64 => {
     setAdditionalInfoImageTwo(imageBase64);
   };
+
+  const { state } = useContext(CustomerContext);
+  const customerList = state.map(x => ({
+    label: `${x.firstName} ${x.lastName}`,
+    value: x.id,
+    key: x.id
+  }));
+
+  const { state: collectionState } = useContext(CollectionContext);
+  const collectionList = collectionState.map(x => ({
+    label: x.collectionName,
+    value: x.id,
+    key: x.id
+  }));
+
+  const { state: artistState } = useContext(ArtistContext);
+  const artistList = artistState.map(x => ({
+    label: `${x.firstName} ${x.lastName}`,
+    value: x.id,
+    key: x.id
+  }));
 
   return (
     <View style={styles.container}>
@@ -239,22 +264,22 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setProvenance(text)}
         />
         <Text style={styles.label}>Artist:</Text>
-        <TextInput
-          style={styles.input}
-          value={artist}
-          onChangeText={text => setArtist(text)}
+        <RNPickerSelect
+          items={artistList}
+          // value={artistId}
+          onValueChange={value => setArtist(value)}
         />
         <Text style={styles.label}>Collection:</Text>
-        <TextInput
-          style={styles.input}
-          value={collection}
-          onChangeText={text => setCollection(text)}
+        <RNPickerSelect
+          items={collectionList}
+          // value={collectionId}
+          onValueChange={value => setCollection(value)}
         />
         <Text style={styles.label}>Customer:</Text>
-        <TextInput
-          style={styles.input}
-          value={customer}
-          onChangeText={text => setCustomer(text)}
+        <RNPickerSelect
+          items={customerList}
+          // value={customerId}
+          onValueChange={value => setCustomer(value)}
         />
         <Text style={styles.label}>Date Acquired Label:</Text>
         <TextInput
@@ -263,18 +288,8 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setDateAcquiredLabel(text)}
         />
         <Text style={styles.label}>Notes Image Two:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={notesImageTwo}
-          onChangeText={text => setNotesImageTwo(text)}
-        /> */}
         <ImageSelector onImageTaken={notesImageTwoTakenHandler} />
         <Text style={styles.label}>Additional Info Image Two:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={additionalInfoImageTwo}
-          onChangeText={text => setAdditionalInfoImageTwo(text)}
-        /> */}
         <ImageSelector onImageTaken={additionalInfoImageTwoTakenHandler} />
         <Text style={styles.label}>General Information:</Text>
         <TextInput

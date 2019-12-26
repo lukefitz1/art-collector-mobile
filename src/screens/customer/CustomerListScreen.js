@@ -10,11 +10,13 @@ import {
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
 import { Context as CollectionContext } from "../../context/CollectionContext";
+import { Context as ArtistContext } from "../../context/ArtistContext";
 import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
   const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
   const { getCollections } = useContext(CollectionContext);
+  const { getArtists } = useContext(ArtistContext);
 
   const showAlert = id => {
     Alert.alert("Warning", "Are you sure you want to delete this customer?", [
@@ -29,6 +31,7 @@ const CustomerListScreen = ({ navigation }) => {
   function makeRequests() {
     getCustomers();
     getCollections();
+    getArtists();
   }
 
   return (

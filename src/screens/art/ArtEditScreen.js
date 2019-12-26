@@ -116,7 +116,7 @@ const ArtEditScreen = ({ navigation }) => {
           generalInformation,
           showGeneralInfo,
           customTitle,
-          () => navigation.pop()
+          () => navigation.navigate("ArtList")
         );
       }}
     />

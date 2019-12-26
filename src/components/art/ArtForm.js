@@ -139,11 +139,6 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setMedium(text)}
         />
         <Text style={styles.label}>Image:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={image}
-          onChangeText={text => setImage(text)}
-        /> */}
         <ImageSelector onImageTaken={imageTakenHandler} />
         <Text style={styles.label}>Description:</Text>
         <TextInput
@@ -210,11 +205,6 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setNotes(text)}
         />
         <Text style={styles.label}>Notes Image:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={notesImage}
-          onChangeText={text => setNotesImage(text)}
-        /> */}
         <ImageSelector onImageTaken={notesImageOneTakenHandler} />
         <Text style={styles.label}>Additional Info Label:</Text>
         <TextInput
@@ -231,11 +221,6 @@ const ArtForm = ({ onSubmit, initialValues }) => {
           onChangeText={text => setAdditionalInfoText(text)}
         />
         <Text style={styles.label}>Additional Info Image:</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={additionalInfoImage}
-          onChangeText={text => setAdditionalInfoImage(text)}
-        /> */}
         <ImageSelector onImageTaken={additionalInfoImageOneTakenHandler} />
         <Text style={styles.label}>Additional PDF:</Text>
         <TextInput
@@ -266,19 +251,19 @@ const ArtForm = ({ onSubmit, initialValues }) => {
         <Text style={styles.label}>Artist:</Text>
         <RNPickerSelect
           items={artistList}
-          // value={artistId}
+          value={artist}
           onValueChange={value => setArtist(value)}
         />
         <Text style={styles.label}>Collection:</Text>
         <RNPickerSelect
           items={collectionList}
-          // value={collectionId}
+          value={collection}
           onValueChange={value => setCollection(value)}
         />
         <Text style={styles.label}>Customer:</Text>
         <RNPickerSelect
           items={customerList}
-          // value={customerId}
+          value={customer}
           onValueChange={value => setCustomer(value)}
         />
         <Text style={styles.label}>Date Acquired Label:</Text>

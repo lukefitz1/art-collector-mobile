@@ -14,11 +14,12 @@ const CollectionEditScreen = ({ navigation }) => {
       initialValues={{
         collectionName: collection.collectionName,
         identifier: collection.identifier,
-        year: collection.year
+        year: collection.year,
+        customerId: collection.customer_id
       }}
-      onSubmit={(collectionName, identifier, year) => {
-        editCollection(id, collectionName, identifier, year, () =>
-          navigation.pop()
+      onSubmit={(collectionName, identifier, year, customerId) => {
+        editCollection(id, collectionName, identifier, year, customerId, () =>
+          navigation.navigate("CollectionList")
         );
       }}
     />

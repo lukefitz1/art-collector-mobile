@@ -58,12 +58,13 @@ const addCollection = () => {
 };
 
 const editCollection = dispatch => {
-  return async (id, collectionName, identifier, year, callback) => {
+  return async (id, collectionName, identifier, year, customerId, callback) => {
     try {
       await spireApi.put(`/collections/${id}`, {
         collectionName,
         identifier,
-        year
+        year,
+        customer_id: customerId
       });
 
       dispatch({
@@ -72,7 +73,8 @@ const editCollection = dispatch => {
           id: id,
           collectionName,
           identifier,
-          year
+          year,
+          customerId: customerId
         }
       });
 

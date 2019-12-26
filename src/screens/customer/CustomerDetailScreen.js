@@ -91,7 +91,8 @@ const CustomerDetailScreen = ({ navigation }) => {
                   <TouchableOpacity
                     onPress={() =>
                       navigation.navigate("ArtCreate", {
-                        id: item.id
+                        collection: item.id,
+                        customer: customer.id
                       })
                     }
                   >

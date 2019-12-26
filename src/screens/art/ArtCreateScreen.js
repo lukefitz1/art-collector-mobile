@@ -6,8 +6,15 @@ import ArtForm from "../../components/art/ArtForm";
 const ArtCreateScreen = ({ navigation }) => {
   const { addArtwork } = useContext(ArtContext);
 
+  const collectionId = navigation.getParam("collection");
+  const customerId = navigation.getParam("customer");
+
   return (
     <ArtForm
+      initialValues={{
+        collection: collectionId,
+        customer: customerId
+      }}
       onSubmit={(
         objectId,
         artType,
@@ -77,7 +84,8 @@ const ArtCreateScreen = ({ navigation }) => {
           generalInformation,
           showGeneralInfo,
           customTitle,
-          () => navigation.navigate("ArtList")
+          // () => navigation.navigate("ArtList")
+          () => navigation.navigate("CustomerDetail", { id: customerId })
         );
       }}
     />

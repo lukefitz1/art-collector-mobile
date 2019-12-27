@@ -10,7 +10,7 @@ console.log(`URL for local testing: ${url}`);
 // console.log(`URL for local testing 2: ${base_url}`);
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/api"
+  baseURL: "https://spire-art-services.herokuapp.com/api"
 });
 
 instance.interceptors.request.use(

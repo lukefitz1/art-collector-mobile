@@ -61,56 +61,90 @@ const CustomerDetailScreen = ({ navigation }) => {
         <Text style={styles.label}>Project Notes: </Text>
         <Text>{customer.projectNotes}</Text>
       </View>
-      <Button
+      {/* <Button
         title="Create Collection"
         onPress={() => navigation.navigate("CollectionCreate")}
-      />
-      <FlatList
-        data={customer.collections}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <Collapse>
-                <CollapseHeader>
-                  <View>
-                    <Text>{item.collectionName}</Text>
-                  </View>
-                </CollapseHeader>
-                <CollapseBody>
-                  <Text>Collection ID: {item.id}</Text>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("CollectionEdit", {
-                        id: item.id
-                      })
-                    }
-                  >
-                    <Text>Edit Collection</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate("ArtCreate", {
-                        collection: item.id,
-                        customer: customer.id
-                      })
-                    }
-                  >
-                    <Text>Add Artwork</Text>
-                  </TouchableOpacity>
-                  <FlatList
-                    data={item.artworks}
-                    keyExtractor={item => item.id}
-                    renderItem={({ item }) => {
-                      return <Text>{item.ojbId}</Text>;
-                    }}
-                  />
-                </CollapseBody>
-              </Collapse>
-            </View>
-          );
-        }}
-      />
+      /> */}
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("CollectionCreate")}
+        >
+          <View style={styles.addCollectionTextContainer}>
+            <Text style={styles.addCollectionText}>Create Collection</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.collectionsContainer}>
+        <FlatList
+          data={customer.collections}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.collectionNameContainer}>
+                <Collapse>
+                  <CollapseHeader>
+                    <View style={styles.collectionHeading}>
+                      <View>
+                        <Text style={styles.collectionNameText}>
+                          {item.collectionName}
+                        </Text>
+                      </View>
+                      {/* <View style={styles.editIcon}>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate("CustomerEdit", {
+                              id: navigation.getParam("id")
+                            })
+                          }
+                        >
+                          <EvilIcons name="pencil" size={20} />
+                        </TouchableOpacity>
+                      </View> */}
+                    </View>
+                  </CollapseHeader>
+                  <CollapseBody>
+                    {/* <Text>Collection ID: {item.id}</Text> */}
+                    {/* <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("CollectionEdit", {
+                          id: item.id
+                        })
+                      }
+                    >
+                      <Text>Edit Collection</Text>
+                    </TouchableOpacity> */}
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("ArtCreate", {
+                          collection: item.id,
+                          customer: customer.id
+                        })
+                      }
+                    >
+                      <View style={styles.addArtTextContainer}>
+                        <Text style={styles.addArtText}>Add Artwork</Text>
+                      </View>
+                    </TouchableOpacity>
+                    <FlatList
+                      data={item.artworks}
+                      keyExtractor={item => item.id}
+                      renderItem={({ item }) => {
+                        return (
+                          <View style={styles.artworkNameContainer}>
+                            <Text>
+                              {item.ojbId} - {item.title}
+                            </Text>
+                          </View>
+                        );
+                      }}
+                    />
+                  </CollapseBody>
+                </Collapse>
+              </View>
+            );
+          }}
+        />
+      </View>
     </>
   );
 };
@@ -135,7 +169,65 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     margin: 5
   },
-  label: { fontWeight: "bold" }
+  label: { fontWeight: "bold" },
+  addCollectionTextContainer: {
+    borderColor: "#006E8A",
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 15,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  addCollectionText: {
+    fontSize: 20,
+    color: "#006E8A",
+    alignSelf: "center",
+    padding: 5
+  },
+  collectionsContainer: {
+    marginTop: 10
+  },
+  collectionNameContainer: {
+    borderBottomColor: "#006E8A",
+    borderBottomWidth: 1,
+    minHeight: 50,
+    flex: 1,
+    justifyContent: "center",
+    padding: 3,
+    marginLeft: 2,
+    marginRight: 2
+  },
+  collectionHeading: {
+    flex: 1,
+    flexDirection: "row"
+  },
+  collectionNameText: {
+    fontSize: 18
+  },
+  editIcon: {},
+  artworkNameContainer: {
+    marginLeft: 8,
+    marginRight: 8,
+    borderTopColor: "#006E8A",
+    borderTopWidth: 1,
+    minHeight: 45,
+    paddingTop: 5,
+    flex: 1,
+    justifyContent: "center"
+  },
+  addArtTextContainer: {
+    flex: 1,
+    borderColor: "#006E8A",
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 20
+  },
+  addArtText: {
+    fontSize: 20,
+    color: "#006E8A",
+    alignSelf: "center",
+    padding: 5
+  }
 });
 
 export default CustomerDetailScreen;

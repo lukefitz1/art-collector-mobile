@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.lukefitzgerald.art-collector-mobile",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "package": "com.lukefitzgerald.art_collector_mobile",

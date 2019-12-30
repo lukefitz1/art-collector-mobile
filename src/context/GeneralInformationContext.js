@@ -6,18 +6,17 @@ const generalInformationReducer = (state, action) => {
     case "get_general_information":
       return action.payload;
     case "delete_general_information":
-      return state.filter(customer => customer.id !== action.payload);
-    // case "edit_general_information":
-    //   return state.map(customer => {
-    //     return customer.id === action.payload.id ? action.payload : customer;
-    //   });
+      return state.filter(gi => gi.id !== action.payload);
+    case "edit_general_information":
+      return state.map(gi => {
+        return gi.id === action.payload.id ? action.payload : gi;
+      });
     default:
       return state;
   }
 };
 
 const getGeneralInformation = dispatch => {
-  console.log("Calling the genreal information endpoint");
   return async () => {
     try {
       const response = await spireApi.get("/general_informations");
@@ -54,34 +53,31 @@ const addGeneralInformation = () => {
   };
 };
 
-// const editGeneralInformation = dispatch => {
-//   return async (
-//     id,
-//     firstName,
-//     callback
-//   ) => {
-//     try {
-//       await spireApi.put(`/customer/${id}`, {
-//         firstName
-//       });
+const editGeneralInformation = dispatch => {
+  return async (id, infoLabel, info, callback) => {
+    try {
+      await spireApi.put(`/general_informations/${id}`, {
+        information_label: infoLabel,
+        information: info
+      });
 
-//       dispatch({
-//         type: "edit_customer",
-//         payload: {
-//           id: id,
-//           firstName,
-//
-//         }
-//       });
+      dispatch({
+        type: "edit_general_information",
+        payload: {
+          id: id,
+          information_label: infoLabel,
+          information: info
+        }
+      });
 
-//       if (callback) {
-//         callback();
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// };
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 const deleteGeneralInformation = dispatch => {
   return async (id, callback) => {
@@ -104,7 +100,7 @@ export const { Provider, Context } = createDataContext(
   {
     getGeneralInformation,
     addGeneralInformation,
-    // editGeneralInformation,
+    editGeneralInformation,
     deleteGeneralInformation
   },
   []

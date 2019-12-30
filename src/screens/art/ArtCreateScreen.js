@@ -84,7 +84,6 @@ const ArtCreateScreen = ({ navigation }) => {
           generalInformation,
           showGeneralInfo,
           customTitle,
-          // () => navigation.navigate("ArtList")
           () => navigation.navigate("CustomerDetail", { id: customerId })
         );
       }}

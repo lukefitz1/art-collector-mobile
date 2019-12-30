@@ -57,6 +57,19 @@ const GeneralInformationListScreen = ({ navigation }) => {
   );
 };
 
+GeneralInformationListScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: "General Informations",
+    headerRight: (
+      <TouchableOpacity
+        onPress={() => navigation.navigate("GeneralInformationCreate")}
+      >
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    )
+  };
+};
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",

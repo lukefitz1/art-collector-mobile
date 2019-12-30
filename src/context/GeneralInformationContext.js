@@ -29,32 +29,30 @@ const getGeneralInformation = dispatch => {
   };
 };
 
-// const addGeneralInformation = () => {
-//   return async (
-//     firstName,
-//     callback
-//   ) => {
-//     try {
-//       await spireApi.post("/customer", {
-//         firstName
-//       });
+const addGeneralInformation = () => {
+  return async (infoLabel, info, callback) => {
+    try {
+      await spireApi.post("/general_informations", {
+        information_label: infoLabel,
+        information: info
+      });
 
-//       // TODO: Instead of following dispatch, we may need to re-fetch all customers
-//       // so that we can navigate to the detail page of the new customer after creation
-//       // dispatch({ type: "add_customer", payload: response.data });
+      // TODO: Instead of following dispatch, we may need to re-fetch all customers
+      // so that we can navigate to the detail page of the new customer after creation
+      // dispatch({ type: "add_customer", payload: response.data });
 
-//       // So, for example (from the get customers function above):
-//       // const response = await spireApi.get("/customer");
-//       // dispatch({ type: "get_customers", payload: response.data });
+      // So, for example (from the get customers function above):
+      // const response = await spireApi.get("/customer");
+      // dispatch({ type: "get_customers", payload: response.data });
 
-//       if (callback) {
-//         callback();
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-// };
+      if (callback) {
+        callback();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 // const editGeneralInformation = dispatch => {
 //   return async (
@@ -105,7 +103,7 @@ export const { Provider, Context } = createDataContext(
   generalInformationReducer,
   {
     getGeneralInformation,
-    // addGeneralInformation,
+    addGeneralInformation,
     // editGeneralInformation,
     deleteGeneralInformation
   },

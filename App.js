@@ -94,8 +94,8 @@ const switchNavigator = createSwitchNavigator({
     customerFlow: customerFlow,
     // collectionFlow: collectionFlow,
     // artFlow: artFlow,
-    generalInformationFlow: generalInformationFlow,
-    artistFlow: artistFlow
+    artistFlow: artistFlow,
+    generalInformationFlow: generalInformationFlow
   })
 });
 

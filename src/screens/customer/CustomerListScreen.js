@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Text,
   View,
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Alert
+  Alert,
+  ActivityIndicator
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import { Context as CustomerContext } from "../../context/CustomerContext";
@@ -14,6 +15,7 @@ import { Context as ArtistContext } from "../../context/ArtistContext";
 import { Feather } from "@expo/vector-icons";
 
 const CustomerListScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { state, getCustomers, deleteCustomer } = useContext(CustomerContext);
   const { getCollections } = useContext(CollectionContext);
   const { getArtists } = useContext(ArtistContext);
@@ -29,14 +31,42 @@ const CustomerListScreen = ({ navigation }) => {
   };
 
   function makeRequests() {
+    setIsLoading(true);
+    // console.log(`Loading state: ${isLoading}`);
     getCustomers();
+    // console.log("Getting customers");
     getCollections();
+    // console.log("Getting collections");
     getArtists();
+    // console.log("Getting artists");
+    setIsLoading(false);
   }
 
+  const makeRequest = async () => {
+    setIsLoading(true);
+    await getCustomers();
+    getCollections();
+    getArtists();
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justContent: "center",
+          alignItems: "center",
+          marginTop: 150
+        }}
+      >
+        <ActivityIndicator size="large" color="blue" />
+      </View>
+    );
+  }
   return (
     <>
-      <NavigationEvents onWillFocus={() => makeRequests()} />
+      <NavigationEvents onWillFocus={() => makeRequest()} />
       <FlatList
         data={state}
         keyExtractor={item => item.id}

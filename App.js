@@ -19,6 +19,10 @@ import ArtListScreen from "./src/screens/art/ArtListScreen";
 import ArtDetailScreen from "./src/screens/art/ArtDetailScreen";
 import ArtCreateScreen from "./src/screens/art/ArtCreateScreen";
 import ArtEditScreen from "./src/screens/art/ArtEditScreen";
+import GeneralInformationListScreen from "./src/screens/generalInformation/GeneralInformationListScreen";
+import GeneralInformationDetailScreen from "./src/screens/generalInformation/GeneralInformationDetailScreen";
+import GeneralInformationCreateScreen from "./src/screens/generalInformation/GeneralInformationCreateScreen";
+import GeneralInformationEditScreen from "./src/screens/generalInformation/GeneralInformationEditScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
@@ -71,13 +75,25 @@ artistFlow.navigationOptions = {
   title: "Artists"
 };
 
+const generalInformationFlow = createStackNavigator({
+  GeneralInformationList: GeneralInformationListScreen,
+  GeneralInformationDetail: GeneralInformationDetailScreen,
+  GeneralInformationCreate: GeneralInformationCreateScreen,
+  GeneralInformationEdit: GeneralInformationEditScreen
+});
+
+generalInformationFlow.navigationOptions = {
+  title: "General Information"
+};
+
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   SignIn: SignInScreen,
   mainFlow: createBottomTabNavigator({
     customerFlow: customerFlow,
-    collectionFlow: collectionFlow,
-    artFlow: artFlow,
+    // collectionFlow: collectionFlow,
+    // artFlow: artFlow,
+    generalInformationFlow: generalInformationFlow,
     artistFlow: artistFlow
   })
 });

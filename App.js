@@ -30,6 +30,7 @@ import { Provider as CustomerProvider } from "./src/context/CustomerContext";
 import { Provider as CollectionProvider } from "./src/context/CollectionContext";
 import { Provider as ArtProvider } from "./src/context/ArtContext";
 import { Provider as ArtistProvider } from "./src/context/ArtistContext";
+import { Provider as GeneralInformationProvider } from "./src/context/GeneralInformationContext";
 
 const customerFlow = createStackNavigator({
   CustomerList: CustomerListScreen,
@@ -106,13 +107,15 @@ export default () => {
       <CollectionProvider>
         <ArtProvider>
           <ArtistProvider>
-            <AuthProvider>
-              <App
-                ref={navigator => {
-                  setNavigator(navigator);
-                }}
-              />
-            </AuthProvider>
+            <GeneralInformationProvider>
+              <AuthProvider>
+                <App
+                  ref={navigator => {
+                    setNavigator(navigator);
+                  }}
+                />
+              </AuthProvider>
+            </GeneralInformationProvider>
           </ArtistProvider>
         </ArtProvider>
       </CollectionProvider>

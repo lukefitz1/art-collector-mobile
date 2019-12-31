@@ -36,7 +36,9 @@ const customerFlow = createStackNavigator({
   CustomerList: CustomerListScreen,
   CustomerDetail: CustomerDetailScreen,
   CustomerCreate: CustomerCreateScreen,
-  CustomerEdit: CustomerEditScreen
+  CustomerEdit: CustomerEditScreen,
+  CollectionCreate: CollectionCreateScreen,
+  ArtCreate: ArtCreateScreen
 });
 
 customerFlow.navigationOptions = {
@@ -92,8 +94,6 @@ const switchNavigator = createSwitchNavigator({
   SignIn: SignInScreen,
   mainFlow: createBottomTabNavigator({
     customerFlow: customerFlow,
-    // collectionFlow: collectionFlow,
-    // artFlow: artFlow,
     artistFlow: artistFlow,
     generalInformationFlow: generalInformationFlow
   })
